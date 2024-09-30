@@ -13,7 +13,7 @@ export class LoginPage {
         this.btnLogin= page.locator('#login-button');
     }
 
-    async login(){
+    async loginAsValidUser(){
         await this.txtUserName.fill('standard_user');
         await this.txtPassWord.fill('secret_sauce');
         await this.btnLogin.click();

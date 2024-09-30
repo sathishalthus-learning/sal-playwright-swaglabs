@@ -9,7 +9,7 @@ export class ProductsPage {
         this.pageHeading=page.locator('.product_label',{hasText:'Products'})
     }
 
-    async verifyHeading(){
-        await expect(this.pageHeading).toBeVisible();
+     async getHeading():Promise<string>{
+         return this.pageHeading.innerText();
     }
 }
