@@ -10,6 +10,6 @@ export class ProductsPage {
     }
 
      async getHeading():Promise<string>{
-         return this.pageHeading.innerText();
+         return await this.pageHeading.innerText();
     }
 }
