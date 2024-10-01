@@ -4,18 +4,25 @@ export class LoginPage {
     readonly page: Page;
     readonly txtUserName: Locator;
     readonly txtPassWord: Locator;
-    readonly btnLogin : Locator;
+    readonly btnLogin: Locator;
+    readonly msgLockedOut: Locator;
 
-    constructor(page:Page){
+    constructor(page: Page) {
         this.page = page;
-        this.txtUserName=page.locator('#user-name');
-        this.txtPassWord=page.locator('#password');
-        this.btnLogin= page.locator('#login-button');
+        this.txtUserName = page.locator('#user-name');
+        this.txtPassWord = page.locator('#password');
+        this.btnLogin = page.locator('#login-button');
+        this.msgLockedOut = page.locator('//h3');
     }
 
-    async loginAsValidUser(){
-        await this.txtUserName.fill('standard_user');
-        await this.txtPassWord.fill('secret_sauce');
+    async loginToSauceDemo(username: string, password: string) {
+        await this.txtUserName.fill(username);
+        await this.txtPassWord.fill(password);
         await this.btnLogin.click();
     }
+
+    async getLockedOutMessage(): Promise<string> {
+        return await this.msgLockedOut.innerText();
+    }
+
 }
