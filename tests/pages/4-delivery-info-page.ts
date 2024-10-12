@@ -9,9 +9,9 @@ export class ContactPage {
 
     constructor(page: Page) {
         this.page = page;
-        this.txtFirstName = page.locator('[data-test="firstName"]');
-        this.txtLastName = page.locator('[data-test="lastName"]');
-        this.txtPostalCode = page.locator('[data-test="postalCode"]');
+        this.txtFirstName = page.locator('#first-name');
+        this.txtLastName = page.locator('#last-name');
+        this.txtPostalCode = page.locator('#postal-code');
         this.btnContinue = page.getByRole('button', { name: 'CONTINUE' });
     }
 

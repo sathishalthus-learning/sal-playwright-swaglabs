@@ -15,34 +15,31 @@ describe('order-items', async () => {
 
     });
 
-    test('order single item', async ({ page }) => {
-        //arrange
-
-        const catalogPage = new CatalogPage(page);
-        const cartPage = new CartPage(page);
-        const contactPage = new ContactPage(page);
-        const orderPage = new OrderPage(page);
-        const successPage = new SuccessPage(page);
-
-        // act
+    test('buy a product', async ({ page }) => {
+        //
         const loginPage = new LoginPage(page);
         const username: string = 'standard_user';
         const password: string = 'secret_sauce'
-        loginPage.loginToSauceDemo('standard_user', 'secret_sauce');
-
+        await loginPage.loginToSauceDemo('standard_user', 'secret_sauce');
+        //
+        const catalogPage = new CatalogPage(page);
         const items: string[] = ['Sauce Labs Backpack'];
-        catalogPage.addItemsToCart(items);
-        catalogPage.verifyCartCount('1');
-        catalogPage.goToCart();
-
-        cartPage.checkoutCart();
+        await catalogPage.addItemsToCart(items);
+        await catalogPage.verifyCartCount('1');
+        await catalogPage.goToCart();
+        //
+        const cartPage = new CartPage(page);
+        await cartPage.checkoutCart();
+        //
         const contactInfo=['Rosee','Selva','60000'];
-        contactPage.fillContactInfo(contactInfo);
-
-        orderPage.completeOrder();
-        
-        //assert
-        successPage.verifySuccessMessage();
+        const contactPage = new ContactPage(page);
+        await contactPage.fillContactInfo(contactInfo);
+        //
+        const orderPage = new OrderPage(page);
+        await orderPage.completeOrder();
+        //
+        const successPage = new SuccessPage(page);
+        await successPage.verifySuccessMessage();
 
     });
 });
