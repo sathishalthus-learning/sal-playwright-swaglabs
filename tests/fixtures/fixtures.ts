@@ -37,3 +37,5 @@ export const test = baseTest.extend<fixtures>({
 });
 
 export { expect } from "@playwright/test";
+
+// fixtures added
